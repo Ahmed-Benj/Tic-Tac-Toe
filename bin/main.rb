@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-
+#rubocop:disable all
 puts "Welcome to rubys Tic-Tac-Toe !\n\n"
 
 
