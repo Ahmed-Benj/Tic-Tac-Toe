@@ -27,7 +27,7 @@ while player2name.empty?
   player2name = queryplayername("Player name can not be empty, please enter valid Player2 name, #{timesleft} times left:")
   timesleft -= 1
   exitforspecificreason('Exiting the game : exceeded number of tries!') if timesleft.zero? && player2name.empty?
-end
+end 
 
 puts "\n#{player1name} will play with X and #{player2name} will play with O\n\n"
 puts "Let's start!\n\n"
