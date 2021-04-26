@@ -1,14 +1,24 @@
 #!/usr/bin/env ruby
 ##rubocop:disable all
 
-def querydata(displaymessage)
-  puts displaymessage
+def querydata(dispmsg)
+  puts dispmsg
   gets.chomp.strip
 end
 
 def exit(reason)
   puts "Exiting the game : #{reason}"
   exit
+end
+
+def display_board(sym, pos)
+  puts separator = '+---+---+---+'
+  # puts row = '| 1 | 2 | 3 |'
+  puts separator
+  # puts row = '| 4 | 5 | 6 |'
+  puts separator
+  # puts row = '| 7 | 8 | 9 |'
+  puts "#{separator}\n\n"
 end
 
 # initializers_(tobe_deleted)
@@ -35,13 +45,7 @@ end
 puts "\n#{player1name} will play with X and #{player2name} will play with O\n\n"
 puts "Let's start!\n\n"
 
-puts separator = '+---+---+---+'
-# puts row = '| 1 | 2 | 3 |'
-puts separator
-# puts row = '| 4 | 5 | 6 |'
-puts separator
-# puts row = '| 7 | 8 | 9 |'
-puts "#{separator}\n\n"
+display_board(0,0)
 
 player1choice = querydata("It's #{player1name}'s turn!\n\nPlease select an available cell from the board (1-9)")
 timesleft = 3
