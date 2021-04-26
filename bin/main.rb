@@ -11,18 +11,17 @@ def exit(reason)
   exit
 end
 
-def display_board(sym, pos)
-  puts separator = '+---+---+---+'
-  # puts row = '| 1 | 2 | 3 |'
-  puts separator
-  # puts row = '| 4 | 5 | 6 |'
-  puts separator
-  # puts row = '| 7 | 8 | 9 |'
-  puts "#{separator}\n\n"
+board = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+def display_board(board,symbol,position)
+  board = board.map {|x| x==position ? symbol : x}
+  puts '+---+---+---+'
+  puts "| #{board[0]} | #{board[1]} | #{board[2]} |"
+  puts '+---+---+---+'
+  puts "| #{board[3]} | #{board[4]} | #{board[5]} |"
+  puts '+---+---+---+'
+  puts "| #{board[6]} | #{board[7]} | #{board[8]} |"
+  puts '+---+---+---+\n\n'
 end
-
-# initializers_(tobe_deleted)
-player1name = 'x'
 
 puts "Welcome to rubys Tic-Tac-Toe !\n\n"
 
@@ -45,7 +44,7 @@ end
 puts "\n#{player1name} will play with X and #{player2name} will play with O\n\n"
 puts "Let's start!\n\n"
 
-display_board(0,0)
+display_board(board,"X","3")
 
 player1choice = querydata("It's #{player1name}'s turn!\n\nPlease select an available cell from the board (1-9)")
 timesleft = 3
