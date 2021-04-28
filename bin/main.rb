@@ -68,3 +68,4 @@ end
 display_board(board, 'O', player2choice)
 
 puts "#{player1name} you WIN the game!"
+puts "It's a TIE!\n\n Game over"
