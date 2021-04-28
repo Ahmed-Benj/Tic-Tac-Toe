@@ -20,7 +20,8 @@ def display_board(board,symbol,position)
   puts "| #{board[3]} | #{board[4]} | #{board[5]} |"
   puts '+---+---+---+'
   puts "| #{board[6]} | #{board[7]} | #{board[8]} |"
-  puts '+---+---+---+\n\n'
+  puts "+---+---+---+ \n\n"
+  return board
 end
 
 puts "Welcome to rubys Tic-Tac-Toe !\n\n"
@@ -44,7 +45,7 @@ end
 puts "\n#{player1name} will play with X and #{player2name} will play with O\n\n"
 puts "Let's start!\n\n"
 
-display_board(board,"X","3")
+board = display_board(board,nil,nil)
 
 player1choice = querydata("It's #{player1name}'s turn!\n\nPlease select an available cell from the board (1-9)")
 timesleft = 3
@@ -54,6 +55,8 @@ until player1choice.to_i.between?(1, 9)
   exit('exceeded number of tries!') if timesleft.zero? && !player1choice.to_i.between?(1, 9)
 end
 
+board = display_board(board,"X",player1choice)
+
 player2choice = querydata("It's #{player2name}'s turn!\n\nPlease select an available cell from the board (1-9)")
 timesleft = 3
 until player2choice.to_i.between?(1, 9)
@@ -61,3 +64,5 @@ until player2choice.to_i.between?(1, 9)
   timesleft -= 1
   exit('exceeded number of tries!') if timesleft.zero? && !player2choice.to_i.between?(1, 9)
 end
+
+display_board(board,"O",player2choice)
