@@ -47,25 +47,43 @@ puts "Let's start!\n\n"
 
 board = display_board(board, nil, nil)
 
-player1choice = querydata("It's #{player1name}'s turn!\n\nPlease select an available cell from the board (1-9)")
-timesleft = 3
-until player1choice.to_i.between?(1, 9)
-  player1choice = querydata("Invalid move. Please enter a number from 1-9, #{timesleft} times left:")
-  timesleft -= 1
-  exit('exceeded number of tries!') if timesleft.zero? && !player1choice.to_i.between?(1, 9)
+game_status = 'not finished'
+maximum_number_of_rolls = 9
+
+player1win = nil
+player2win = nil
+while game_status == 'not finished' and maximum_number_of_rolls.positive?
+  player1choice = querydata("It's #{player1name}'s turn!\n\nPlease select an available cell from the board (1-9)")
+  timesleft = 3
+  until player1choice.to_i.between?(1, 9)
+    player1choice = querydata("Invalid move. Please enter a number from 1-9, #{timesleft} times left:")
+    timesleft -= 1
+    exit('exceeded number of tries!') if timesleft.zero? && !player1choice.to_i.between?(1, 9)
+  end
+
+  board = display_board(board, 'X', player1choice)
+
+  player2choice = querydata("It's #{player2name}'s turn!\n\nPlease select an available cell from the board (1-9)")
+  timesleft = 3
+  until player2choice.to_i.between?(1, 9)
+    player2choice = querydata("Invalid move. Please enter a number from 1-9, #{timesleft} times left:")
+    timesleft -= 1
+    exit('exceeded number of tries!') if timesleft.zero? && !player2choice.to_i.between?(1, 9)
+  end
+
+  display_board(board, 'O', player2choice)
+
+  if player1win
+    puts "#{player1name} you WIN the game!"
+    game_status = 'finished'
+  elsif player2win
+    puts "#{player2name} you WIN the game!"
+    game_status = 'finished'
+  else
+    puts "It's a TIE!\n\nGame over"
+  end
+
+  maximum_number_of_rolls -= 1
+  puts maximum_number_of_rolls
+  puts game_status
 end
-
-board = display_board(board, 'X', player1choice)
-
-player2choice = querydata("It's #{player2name}'s turn!\n\nPlease select an available cell from the board (1-9)")
-timesleft = 3
-until player2choice.to_i.between?(1, 9)
-  player2choice = querydata("Invalid move. Please enter a number from 1-9, #{timesleft} times left:")
-  timesleft -= 1
-  exit('exceeded number of tries!') if timesleft.zero? && !player2choice.to_i.between?(1, 9)
-end
-
-display_board(board, 'O', player2choice)
-
-puts "#{player1name} you WIN the game!"
-puts "It's a TIE!\n\n Game over"
