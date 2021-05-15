@@ -13,7 +13,9 @@ end
 
 board = %w[1 2 3 4 5 6 7 8 9]
 def display_board(board, symbol, position)
-  board = board.map { |x| x == position ? symbol : x }
+  board = board.map do |x|
+    x == position ? symbol : x
+  end
   puts '+---+---+---+'
   puts "| #{board[0]} | #{board[1]} | #{board[2]} |"
   puts '+---+---+---+'
@@ -55,23 +57,31 @@ player2win = nil
 while game_status == 'not finished' and maximum_number_of_rolls.positive?
   player1choice = querydata("It's #{player1name}'s turn!\n\nPlease select an available cell from the board (1-9)")
   timesleft = 3
-  until player1choice.to_i.between?(1, 9)
+  until player1choice.to_i.between?(1,
+                                    9)
     player1choice = querydata("Invalid move. Please enter a number from 1-9, #{timesleft} times left:")
     timesleft -= 1
-    exit('exceeded number of tries!') if timesleft.zero? && !player1choice.to_i.between?(1, 9)
+    exit('exceeded number of tries!') if timesleft.zero? && !player1choice.to_i.between?(
+      1, 9
+    )
   end
 
-  board = display_board(board, 'X', player1choice)
+  board = display_board(board, 'X',
+                        player1choice)
 
   player2choice = querydata("It's #{player2name}'s turn!\n\nPlease select an available cell from the board (1-9)")
   timesleft = 3
-  until player2choice.to_i.between?(1, 9)
+  until player2choice.to_i.between?(1,
+                                    9)
     player2choice = querydata("Invalid move. Please enter a number from 1-9, #{timesleft} times left:")
     timesleft -= 1
-    exit('exceeded number of tries!') if timesleft.zero? && !player2choice.to_i.between?(1, 9)
+    exit('exceeded number of tries!') if timesleft.zero? && !player2choice.to_i.between?(
+      1, 9
+    )
   end
 
-  display_board(board, 'O', player2choice)
+  display_board(board, 'O',
+                player2choice)
 
   if player1win
     puts "#{player1name} you WIN the game!"
