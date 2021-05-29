@@ -1,3 +1,5 @@
+#rubocop:disable all
+
 WIN_COMBINATIONS = [
   [0, 1, 2],
   [3, 4, 5],
@@ -7,26 +9,27 @@ WIN_COMBINATIONS = [
   [2, 5, 8],
   [0, 4, 8],
   [2, 4, 6]
-].freeze
+]
 
 def display_board(board, symbol, position)
   board = board.map.with_index { |x, i| i == position ? symbol : x }
-  puts '+---+---+---+'
+  separator = '+---+---+---+'
+  puts separator
   puts "| #{board[0]} | #{board[1]} | #{board[2]} |"
-  puts '+---+---+---+'
+  puts separator
   puts "| #{board[3]} | #{board[4]} | #{board[5]} |"
-  puts '+---+---+---+'
+  puts separator
   puts "| #{board[6]} | #{board[7]} | #{board[8]} |"
-  puts "+---+---+---+ \n\n"
+  puts separator + "\n\n"
   board
 end
 
 def won(board, symbol)
   WIN_COMBINATIONS.each do |win_combination|
-    board_index_0 = board[win_combination[0]]
-    board_index_1 = board[win_combination[1]]
-    board_index_2 = board[win_combination[2]]
-    return true if board_index_0 == symbol && board_index_1 == symbol && board_index_2 == symbol
+    board_index0 = board[win_combination[0]]
+    board_index1 = board[win_combination[1]]
+    board_index2 = board[win_combination[2]]
+    return true if board_index0 == symbol && board_index1 == symbol && board_index2 == symbol
   end
   false
 end

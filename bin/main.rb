@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
-##rubocop:disable all
+#rubocop:disable all
+
 require '../lib/tic_tac_toe'
 
 board = ['', '', '', '', '', '', '', '', '']
@@ -49,23 +50,29 @@ puts "Let's start!\n\n"
 display_board(board, nil, nil)
 
 while full(board) == false
+  # query players for moves
   player1_move = querydata("It's #{player1.name}'s turn!\n\nPlease select an available cell from the board (1-9)")
   while position_taken(board, player1_move.to_i - 1)
     puts 'this position is taken, please choose another one'
-    player1_move = querydata("It's #{player1.name}'s turn!\n\nPlease select an available cell from the board (1-9)")
+    player1_move = querydata("")
   end
   board = display_board(board, 'X', player1_move.to_i - 1)
+
+  # check if anyone has won ==> If yes break declaring the winner of the game
   if won(board, 'X')
     puts "Congratulations ! #{player1.name} (X) has won the game !!"
     break
+
+    # check if full(board) ==> If yes break declaring tie
   elsif full(board)
     puts 'Break Tie'
     break
   end
+
   player2_move = querydata("It's #{player2.name}'s turn!\n\nPlease select an available cell from the board (1-9)")
   while position_taken(board, player2_move.to_i - 1)
     puts 'this position is taken, please choose another one'
-    player2_move = querydata("It's #{player2.name}'s turn!\n\nPlease select an available cell from the board (1-9)")
+    player2_move = querydata("")
   end
   board = display_board(board, 'O', player2_move.to_i - 1)
   if won(board, 'O')
@@ -75,7 +82,4 @@ while full(board) == false
     puts 'Break Tie'
     break
   end
-  # query players for moves
-  # check if anyone has won ==> If yes break declaring the winner of the game
-  # check if full(board) ==> If yes break declaring tie
 end

@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-##rubocop:disable all
+#rubocop:disable all
 
 def querydata(dispmsg)
   puts dispmsg
