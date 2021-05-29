@@ -1,7 +1,3 @@
-# frozen_string_literal: true
-
-
-
 WIN_COMBINATIONS = [
   [0, 1, 2],
   [3, 4, 5],
@@ -24,6 +20,7 @@ def display_board(board, symbol, position)
   puts "+---+---+---+ \n\n"
   board
 end
+
 def won(board, symbol)
   WIN_COMBINATIONS.each do |win_combination|
     board_index_0 = board[win_combination[0]]
@@ -33,14 +30,11 @@ def won(board, symbol)
   end
   false
 end
+
 def full(board)
   board.all? { |e| e != '' }
 end
 
 def position_taken(board, position)
-  if board[position] != "" then
-    return true
-  else
-    return false
-  end
+  board[position] != ''
 end

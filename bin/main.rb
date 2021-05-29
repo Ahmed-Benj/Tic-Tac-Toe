@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 ##rubocop:disable all
-require "../lib/tic_tac_toe"
+require '../lib/tic_tac_toe'
 
 board = ['', '', '', '', '', '', '', '', '']
 
@@ -8,10 +8,12 @@ def exit_game(reason)
   puts "Exiting the game : #{reason}"
   exit
 end
+
 def querydata(dispmsg)
   puts dispmsg
   gets.chomp.strip
 end
+
 class Player
   attr_accessor :name, :player
 
@@ -48,8 +50,8 @@ display_board(board, nil, nil)
 
 while full(board) == false
   player1_move = querydata("It's #{player1.name}'s turn!\n\nPlease select an available cell from the board (1-9)")
-  while (position_taken(board,player1_move.to_i-1))
-    puts "this position is taken, please choose another one"
+  while position_taken(board, player1_move.to_i - 1)
+    puts 'this position is taken, please choose another one'
     player1_move = querydata("It's #{player1.name}'s turn!\n\nPlease select an available cell from the board (1-9)")
   end
   board = display_board(board, 'X', player1_move.to_i - 1)
@@ -61,8 +63,8 @@ while full(board) == false
     break
   end
   player2_move = querydata("It's #{player2.name}'s turn!\n\nPlease select an available cell from the board (1-9)")
-  while (position_taken(board,player2_move.to_i-1))
-    puts "this position is taken, please choose another one"
+  while position_taken(board, player2_move.to_i - 1)
+    puts 'this position is taken, please choose another one'
     player2_move = querydata("It's #{player2.name}'s turn!\n\nPlease select an available cell from the board (1-9)")
   end
   board = display_board(board, 'O', player2_move.to_i - 1)
