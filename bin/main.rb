@@ -1,11 +1,17 @@
 #!/usr/bin/env ruby
 ##rubocop:disable all
+require "../lib/tic_tac_toe"
+
+board = ['', '', '', '', '', '', '', '', '']
 
 def exit_game(reason)
   puts "Exiting the game : #{reason}"
   exit
 end
-
+def querydata(dispmsg)
+  puts dispmsg
+  gets.chomp.strip
+end
 class Player
   attr_accessor :name, :player
 
@@ -32,40 +38,42 @@ class Player
   end
 end
 
-class Board
-  winning_cases =
-    [[1 2 3] [4 5 6] [7 8 9]
-  [1 4 7] [2 5 8] [3 6 9]
-  [1 5 9] [3 5 7]
-  ]
-  def initialize
-    @board = %w[1 2 3 4 5 6 7 8 9]
-    display_board
-  end
-
-  def display_board(symbol = nil, position = nil)
-    @board = @board.map do |x|
-      x == position ? symbol : x
-    end
-    puts '+---+---+---+'
-    puts "| #{@board[0]} | #{@board[1]} | #{@board[2]} |"
-    puts '+---+---+---+'
-    puts "| #{@board[3]} | #{@board[4]} | #{@board[5]} |"
-    puts '+---+---+---+'
-    puts "| #{@board[6]} | #{@board[7]} | #{@board[8]} |"
-    puts "+---+---+---+ \n\n"
-    @board
-  end
-end
-
 puts "Welcome to rubys Tic-Tac-Toe !\n\n"
 player1 = Player.new('Player 1')
 player2 = Player.new('Player 2')
 
 puts "\n#{player1.name} will play with X and #{player2.name} will play with O\n\n"
 puts "Let's start!\n\n"
+display_board(board, nil, nil)
 
-board = Board.new
-puts 'choose number from : ' #+ class(board).to_s
-
-board.class
+while full(board) == false
+  player1_move = querydata("It's #{player1.name}'s turn!\n\nPlease select an available cell from the board (1-9)")
+  while (position_taken(board,player1_move.to_i-1))
+    puts "this position is taken, please choose another one"
+    player1_move = querydata("It's #{player1.name}'s turn!\n\nPlease select an available cell from the board (1-9)")
+  end
+  board = display_board(board, 'X', player1_move.to_i - 1)
+  if won(board, 'X')
+    puts "Congratulations ! #{player1.name} (X) has won the game !!"
+    break
+  elsif full(board)
+    puts 'Break Tie'
+    break
+  end
+  player2_move = querydata("It's #{player2.name}'s turn!\n\nPlease select an available cell from the board (1-9)")
+  while (position_taken(board,player2_move.to_i-1))
+    puts "this position is taken, please choose another one"
+    player2_move = querydata("It's #{player2.name}'s turn!\n\nPlease select an available cell from the board (1-9)")
+  end
+  board = display_board(board, 'O', player2_move.to_i - 1)
+  if won(board, 'O')
+    puts "Congratulations ! #{player2.name} (O) has won the game !!"
+    break
+  elsif full(board)
+    puts 'Break Tie'
+    break
+  end
+  # query players for moves
+  # check if anyone has won ==> If yes break declaring the winner of the game
+  # check if full(board) ==> If yes break declaring tie
+end
