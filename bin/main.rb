@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-#rubocop:disable all
+##rubocop:disable all
 
 require_relative '../lib/tic_tac_toe'
 require 'colorize'
@@ -43,12 +43,9 @@ class Player
     @display_tries = max_tries - 1
     max_tries.times do
       prompt
-      if @name .empty? or @name.match?(/\A[a-zA-Z'-]*\z/) == false
-        puts "Name can't be empty or containing numbers.#{@display_tries} time(s) left".colorize(:red)
-        @display_tries -= 1
-      else
-        return @name
-      end
+      return @name unless @name.empty? or @name.match?(/^[A-Za-z ]*$/) == false
+      puts "Name can't be empty or containing numbers.#{@display_tries} time(s) left".colorize(:red)
+      @display_tries -= 1
     end
     exit_game("exceeded #{max_tries} tries")
   end
