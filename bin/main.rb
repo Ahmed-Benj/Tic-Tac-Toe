@@ -4,6 +4,10 @@
 require_relative '../lib/tic_tac_toe'
 require 'colorize'
 
+def welcome_player(name, symbol)
+  puts "\n#{name} will play with #{symbol}\n\n"
+end
+
 def display_board(board)
   separator = '+---+---+---+'
   puts separator
@@ -26,10 +30,11 @@ def querydata(dispmsg)
 end
 
 class Player
-  attr_accessor :name, :player
+  attr_accessor :name, :symbol
 
-  def initialize(player)
+  def initialize(player, symbol)
     @player = player
+    @symbol = symbol
     getname
   end
 
@@ -53,10 +58,11 @@ class Player
 end
 
 puts "Welcome to rubys Tic-Tac-Toe !\n\n"
-player1 = Player.new('Player 1')
-player2 = Player.new('Player 2')
+player1 = Player.new('Player 1', 'X')
+welcome_player(player1.name, player1.symbol)
+player2 = Player.new('Player 2', 'O')
+welcome_player(player2.name, player2.symbol)
 
-puts "\n#{player1.name} will play with X and #{player2.name} will play with O\n\n"
 puts "Let's start!\n\n"
 board = Board.new
 display_board(board.board)
