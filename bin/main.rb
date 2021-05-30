@@ -29,6 +29,15 @@ def querydata(dispmsg)
   gets.chomp.strip
 end
 
+def get_playermove(playername, board)
+  playermove = querydata("It's #{playername}'s turn!\n\nPlease select an available cell from the board (1-9)")
+  while board.position_taken(playermove.to_i - 1)
+    puts 'this position is taken, please choose another one'
+    playermove = querydata('')
+  end
+  playermove
+end
+
 class Player
   attr_accessor :name, :symbol
 
@@ -40,7 +49,7 @@ class Player
 
   def prompt
     puts "Enter #{@player}'s name: "
-    @name = gets.chomp
+    @name = gets.chomp.strip
   end
 
   def getname
@@ -69,34 +78,29 @@ display_board(board.board)
 
 while board.full == false
   # query players for moves
-  player1_move = querydata("It's #{player1.name}'s turn!\n\nPlease select an available cell from the board (1-9)")
-  while board.position_taken(player1_move.to_i - 1)
-    puts 'this position is taken, please choose another one'
-    player1_move = querydata('')
-  end
+  player1_move = get_playermove(player1.name, board)
   board.update_board('X', player1_move.to_i - 1)
   display_board(board.board)
 
-  # check if anyone has won ==> If yes break declaring the winner of the game
+  # check if player 1 has won ==> If yes break declaring winner
   if board.won('X')
     puts "Congratulations ! #{player1.name} (X) has won the game !!"
     break
-    # check if full(board) ==> If yes break declaring tie
+  # check if full(board) ==> If yes break declaring tie
   elsif board.full
     puts 'Break Tie'
     break
   end
 
-  player2_move = querydata("It's #{player2.name}'s turn!\n\nPlease select an available cell from the board (1-9)")
-  while board.position_taken(player2_move.to_i - 1)
-    puts 'this position is taken, please choose another one'
-    player2_move = querydata('')
-  end
+  player2_move = get_playermove(player2.name, board)
   board.update_board('O', player2_move.to_i - 1)
   display_board(board.board)
+
+  # check if player 1 has won ==> If yes break declaring winner
   if board.won('O')
     puts "Congratulations ! #{player2.name} (O) has won the game !!"
     break
+  # check if full(board) ==> If yes break declaring tie
   elsif board.full
     puts 'Break Tie'
     break
