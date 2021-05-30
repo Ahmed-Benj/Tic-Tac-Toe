@@ -11,5 +11,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="colorize (v0.8.1, ruby-2.7.2-p137) [gem]" level="application" />
   </component>
 </module>

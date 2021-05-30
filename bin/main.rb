@@ -2,6 +2,7 @@
 #rubocop:disable all
 
 require_relative '../lib/tic_tac_toe'
+require 'colorize'
 
 def display_board(board)
   separator = '+---+---+---+'
@@ -33,9 +34,8 @@ class Player
   end
 
   def prompt
-    print "Enter #{@player}'s name: "
+    puts "Enter #{@player}'s name: "
     @name = gets.chomp
-    warn "Name can't be empty.#{@display_tries} time(s) left" if @name.empty?
   end
 
   def getname
@@ -43,8 +43,12 @@ class Player
     @display_tries = max_tries - 1
     max_tries.times do
       prompt
-      @display_tries -= 1
-      return unless @name.empty?
+      if @name .empty? or @name.match?(/\A[a-zA-Z'-]*\z/) == false
+        puts "Name can't be empty or containing numbers.#{@display_tries} time(s) left".colorize(:red)
+        @display_tries -= 1
+      else
+        return @name
+      end
     end
     exit_game("exceeded #{max_tries} tries")
   end
