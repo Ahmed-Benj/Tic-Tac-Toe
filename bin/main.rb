@@ -44,6 +44,7 @@ class Player
     max_tries.times do
       prompt
       return @name unless @name.empty? or @name.match?(/^[A-Za-z ]*$/) == false
+
       puts "Name can't be empty or containing numbers.#{@display_tries} time(s) left".colorize(:red)
       @display_tries -= 1
     end
