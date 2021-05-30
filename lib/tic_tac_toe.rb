@@ -11,18 +11,7 @@ WIN_COMBINATIONS = [
   [2, 4, 6]
 ]
 
-def display_board(board, symbol, position)
-  board = board.map.with_index { |x, i| i == position ? symbol : x }
-  separator = '+---+---+---+'
-  puts separator
-  puts "| #{board[0]} | #{board[1]} | #{board[2]} |"
-  puts separator
-  puts "| #{board[3]} | #{board[4]} | #{board[5]} |"
-  puts separator
-  puts "| #{board[6]} | #{board[7]} | #{board[8]} |"
-  puts separator + "\n\n"
-  board
-end
+
 
 def won(board, symbol)
   WIN_COMBINATIONS.each do |win_combination|

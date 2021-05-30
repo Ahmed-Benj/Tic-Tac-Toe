@@ -5,6 +5,19 @@ require '../lib/tic_tac_toe'
 
 board = ['', '', '', '', '', '', '', '', '']
 
+def display_board(board, symbol, position)
+  board = board.map.with_index { |x, i| i == position ? symbol : x }
+  separator = '+---+---+---+'
+  puts separator
+  puts "| #{board[0]} | #{board[1]} | #{board[2]} |"
+  puts separator
+  puts "| #{board[3]} | #{board[4]} | #{board[5]} |"
+  puts separator
+  puts "| #{board[6]} | #{board[7]} | #{board[8]} |"
+  puts separator + "\n\n"
+  board
+end
+
 def exit_game(reason)
   puts "Exiting the game : #{reason}"
   exit
