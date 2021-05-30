@@ -28,3 +28,8 @@ end
 def position_taken(board, position)
   board[position] != ''
 end
+
+def update_board(board, symbol, position)
+  board = board.map.with_index { |x, i| i == position ? symbol : x }
+  board
+end

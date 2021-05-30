@@ -1,12 +1,10 @@
 #!/usr/bin/env ruby
 #rubocop:disable all
 
+board = ['', '', '', '', '', '', '', '', '']
 require_relative '../lib/tic_tac_toe.rb'
 
-board = ['', '', '', '', '', '', '', '', '']
-
-def display_board(board, symbol, position)
-  board = board.map.with_index { |x, i| i == position ? symbol : x }
+def display_board(board)
   separator = '+---+---+---+'
   puts separator
   puts "| #{board[0]} | #{board[1]} | #{board[2]} |"
@@ -15,7 +13,6 @@ def display_board(board, symbol, position)
   puts separator
   puts "| #{board[6]} | #{board[7]} | #{board[8]} |"
   puts separator + "\n\n"
-  board
 end
 
 def exit_game(reason)
@@ -60,7 +57,7 @@ player2 = Player.new('Player 2')
 
 puts "\n#{player1.name} will play with X and #{player2.name} will play with O\n\n"
 puts "Let's start!\n\n"
-display_board(board, nil, nil)
+display_board(board)
 
 while full(board) == false
   # query players for moves
@@ -69,13 +66,13 @@ while full(board) == false
     puts 'this position is taken, please choose another one'
     player1_move = querydata("")
   end
-  board = display_board(board, 'X', player1_move.to_i - 1)
+  board = update_board(board, 'X', player1_move.to_i - 1)
+  display_board(board)
 
   # check if anyone has won ==> If yes break declaring the winner of the game
   if won(board, 'X')
     puts "Congratulations ! #{player1.name} (X) has won the game !!"
     break
-
     # check if full(board) ==> If yes break declaring tie
   elsif full(board)
     puts 'Break Tie'
@@ -87,7 +84,8 @@ while full(board) == false
     puts 'this position is taken, please choose another one'
     player2_move = querydata("")
   end
-  board = display_board(board, 'O', player2_move.to_i - 1)
+  board = update_board(board, 'O', player2_move.to_i - 1)
+  display_board(board)
   if won(board, 'O')
     puts "Congratulations ! #{player2.name} (O) has won the game !!"
     break
