@@ -24,15 +24,15 @@ def exit_game(reason)
   exit
 end
 
-def querydata(dispmsg)
-  puts dispmsg
+def querydata(msg)
+  puts msg
   gets.chomp.strip
 end
 
 def get_playermove(playername, board)
   playermove = querydata("It's #{playername}'s turn!\n\nPlease select an available cell from the board (1-9)")
-  while board.position_taken(playermove.to_i - 1)
-    puts 'this position is taken, please choose another one'
+  while board.position_taken(playermove.to_i - 1) or !(1..9).to_a.include? playermove.to_i or playermove == ''
+    puts 'this position is taken/not in range, please choose another one'
     playermove = querydata('')
   end
   playermove

@@ -5,6 +5,7 @@ class Board
 
   def initialize
     @board = ['', '', '', '', '', '', '', '', '']
+    @display_board = %w[1 2 3 4 5 6 7 8 9]
   end
 
   WIN_COMBINATIONS = [
