@@ -38,6 +38,18 @@ def get_playermove(playername, board)
   playermove
 end
 
+def won_draw(board, player)
+  # check if player has won ==> If yes break declaring winner
+  if board.won(player.symbol)
+    puts "Congratulations ! #{player.name} (#{player.symbol}) has won the game !!"
+    'won'
+    # check if full(board) ==> If yes break declaring tie
+  elsif board.full
+    puts 'Break Tie'
+    'full'
+  end
+end
+
 class Player
   attr_accessor :name, :symbol
 
@@ -81,28 +93,10 @@ while board.full == false
   player1_move = get_playermove(player1.name, board)
   board.update_board('X', player1_move.to_i - 1)
   display_board(board.board)
-
-  # check if player 1 has won ==> If yes break declaring winner
-  if board.won('X')
-    puts "Congratulations ! #{player1.name} (X) has won the game !!"
-    break
-  # check if full(board) ==> If yes break declaring tie
-  elsif board.full
-    puts 'Break Tie'
-    break
-  end
+  break if won_draw(board, player1) == 'won' or won_draw(board, player1) == 'draw'
 
   player2_move = get_playermove(player2.name, board)
   board.update_board('O', player2_move.to_i - 1)
   display_board(board.board)
-
-  # check if player 1 has won ==> If yes break declaring winner
-  if board.won('O')
-    puts "Congratulations ! #{player2.name} (O) has won the game !!"
-    break
-  # check if full(board) ==> If yes break declaring tie
-  elsif board.full
-    puts 'Break Tie'
-    break
-  end
+  break if won_draw(board, player2) == 'won' or won_draw(board, player2) == 'draw'
 end
