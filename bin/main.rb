@@ -1,89 +1,102 @@
 #!/usr/bin/env ruby
 ##rubocop:disable all
 
-def querydata(dispmsg)
-  puts dispmsg
-  gets.chomp.strip
+require_relative '../lib/tic_tac_toe'
+require 'colorize'
+
+def welcome_player(name, symbol)
+  puts "\n#{name} will play with #{symbol}\n\n"
 end
 
-def exit(reason)
+def display_board(board)
+  separator = '+---+---+---+'
+  puts separator
+  puts "| #{board[0]} | #{board[1]} | #{board[2]} |"
+  puts separator
+  puts "| #{board[3]} | #{board[4]} | #{board[5]} |"
+  puts separator
+  puts "| #{board[6]} | #{board[7]} | #{board[8]} |"
+  puts "#{separator}\n\n"
+end
+
+def exit_game(reason)
   puts "Exiting the game : #{reason}"
   exit
 end
 
-board = %w[1 2 3 4 5 6 7 8 9]
-def display_board(board, symbol, position)
-  board = board.map { |x| x == position ? symbol : x }
-  puts '+---+---+---+'
-  puts "| #{board[0]} | #{board[1]} | #{board[2]} |"
-  puts '+---+---+---+'
-  puts "| #{board[3]} | #{board[4]} | #{board[5]} |"
-  puts '+---+---+---+'
-  puts "| #{board[6]} | #{board[7]} | #{board[8]} |"
-  puts "+---+---+---+ \n\n"
-  board
+def querydata(msg)
+  puts msg
+  gets.chomp.strip
+end
+
+def get_playermove(playername, board)
+  playermove = querydata("It's #{playername}'s turn!\n\nPlease select an available cell from the board (1-9)")
+  while board.position_taken(playermove.to_i - 1) or !(1..9).to_a.include? playermove.to_i or playermove == ''
+    puts 'this position is taken/not in range, please choose another one'
+    playermove = querydata('')
+  end
+  playermove
+end
+
+def won_draw(board, player)
+  # check if player has won ==> If yes break declaring winner
+  if board.won(player.symbol)
+    puts "Congratulations ! #{player.name} (#{player.symbol}) has won the game !!"
+    'won'
+    # check if full(board) ==> If yes break declaring tie
+  elsif board.full
+    puts 'Break Tie'
+    'full'
+  end
+end
+
+class Player
+  attr_accessor :name, :symbol
+
+  def initialize(player, symbol)
+    @player = player
+    @symbol = symbol
+    getname
+  end
+
+  def prompt
+    puts "Enter #{@player}'s name: "
+    @name = gets.chomp.strip
+  end
+
+  def getname
+    max_tries = 3
+    @display_tries = max_tries - 1
+    max_tries.times do
+      prompt
+      return @name unless @name.empty? or @name.match?(/^[A-Za-z ]*$/) == false
+
+      puts "Name can't be empty or containing numbers.#{@display_tries} time(s) left".colorize(:red)
+      @display_tries -= 1
+    end
+    exit_game("exceeded #{max_tries} tries")
+  end
 end
 
 puts "Welcome to rubys Tic-Tac-Toe !\n\n"
+player1 = Player.new('Player 1', 'X')
+welcome_player(player1.name, player1.symbol)
+player2 = Player.new('Player 2', 'O')
+welcome_player(player2.name, player2.symbol)
 
-player1name = querydata("Enter Player 1's name:")
-timesleft = 3
-while player1name.empty?
-  player1name = querydata("Player name can not be empty, please enter valid Player1 name, #{timesleft} times left:")
-  timesleft -= 1
-  exit('exceeded number of tries!') if timesleft.zero? && player1name.empty?
-end
-
-player2name = querydata("Enter Player 2's name:")
-timesleft = 3
-while player2name.empty?
-  player2name = querydata("Player name can not be empty, please enter valid Player2 name, #{timesleft} times left:")
-  timesleft -= 1
-  exit('exceeded number of tries!') if timesleft.zero? && player2name.empty?
-end
-
-puts "\n#{player1name} will play with X and #{player2name} will play with O\n\n"
 puts "Let's start!\n\n"
+board = Board.new
+display_board(board.board)
 
-board = display_board(board, nil, nil)
+while board.full == false
+  # query players for moves
+  player1_move = get_playermove(player1.name, board)
+  board.update_board('X', player1_move.to_i - 1)
+  display_board(board.board)
+  break if won_draw(board, player1) == 'won' or won_draw(board, player1) == 'draw'
 
-game_status = 'not finished'
-maximum_number_of_rolls = 9
-
-player1win = nil
-player2win = nil
-while game_status == 'not finished' and maximum_number_of_rolls.positive?
-  player1choice = querydata("It's #{player1name}'s turn!\n\nPlease select an available cell from the board (1-9)")
-  timesleft = 3
-  until player1choice.to_i.between?(1, 9)
-    player1choice = querydata("Invalid move. Please enter a number from 1-9, #{timesleft} times left:")
-    timesleft -= 1
-    exit('exceeded number of tries!') if timesleft.zero? && !player1choice.to_i.between?(1, 9)
-  end
-
-  board = display_board(board, 'X', player1choice)
-
-  player2choice = querydata("It's #{player2name}'s turn!\n\nPlease select an available cell from the board (1-9)")
-  timesleft = 3
-  until player2choice.to_i.between?(1, 9)
-    player2choice = querydata("Invalid move. Please enter a number from 1-9, #{timesleft} times left:")
-    timesleft -= 1
-    exit('exceeded number of tries!') if timesleft.zero? && !player2choice.to_i.between?(1, 9)
-  end
-
-  display_board(board, 'O', player2choice)
-
-  if player1win
-    puts "#{player1name} you WIN the game!"
-    game_status = 'finished'
-  elsif player2win
-    puts "#{player2name} you WIN the game!"
-    game_status = 'finished'
-  else
-    puts "It's a TIE!\n\nGame over"
-  end
-
-  maximum_number_of_rolls -= 1
-  puts maximum_number_of_rolls
-  puts game_status
+  player2_move = get_playermove(player2.name, board)
+  board.update_board('O', player2_move.to_i - 1)
+  display_board(board.board)
+  break if won_draw(board, player2) == 'won' or won_draw(board, player2) == 'draw'
 end
