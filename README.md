@@ -2,7 +2,8 @@
 
 > 
 
-This project involves implementation of 
+This project involves implementation of the tic tac toe game : board of 9 cells and 2 players
+[Please check the description of the game rules here](https://www.youtube.com/watch?v=USEjXNCTvcc)
 
 ## Built With
 
@@ -30,11 +31,11 @@ Examples of winning boards :
 
   X WINNING           O WINNING           X WINNING  
 +---+---+---+       +---+---+---+       +---+---+---+
-| X | O |   |       | X | O |   |       | X | O | X |
+| X | O |   |       | X | O |   |       | O | O | X |
 +---+---+---+       +---+---+---+       +---+---+---+   
-| O | X |   |       | X | O |   |       | O | X |   |
+| O | X |   |       | X | O |   |       | X | X | X |
 +---+---+---+       +---+---+---+       +---+---+---+
-| O |   | X |       |   | O | X |       | X | O |   |
+| O |   | X |       |   | O | X |       | O | O |   |
 +---+---+---+       +---+---+---+       +---+---+---+
 
 ## Live Demo
