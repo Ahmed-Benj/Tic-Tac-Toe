@@ -4,7 +4,7 @@ class Board
   attr_accessor :board
 
   def initialize
-    @board = ['', '', '', '', '', '', '', '', '']
+    @board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     @display_board = %w[1 2 3 4 5 6 7 8 9]
   end
 
@@ -30,11 +30,11 @@ class Board
   end
 
   def full
-    @board.all? { |e| e != '' }
+    @board.all? { |e| e.strip != '' }
   end
 
   def position_taken(position)
-    @board[position] != ''
+    @board[position].strip != ''
   end
 
   def update_board(symbol, position)

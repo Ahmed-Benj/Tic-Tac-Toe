@@ -8,11 +8,38 @@ This project involves implementation of
 
 - Ruby
 
+
+
+## Getting Started - How To Play
+
+The game will ask for player names, and assign symbols 'X' & 'O' to both players
+
+The game will show the empty board 
+
++---+---+---+
+|   |   |   |
++---+---+---+
+|   |   |   |
++---+---+---+
+|   |   |   |
++---+---+---+
+
+In order to win the game, you will have to make a series of 3 symbols ('X' or 'O') in a row in any direction :
+
+Examples of winning boards :
+
+  X WINNING           O WINNING           X WINNING  
++---+---+---+       +---+---+---+       +---+---+---+
+| X | O |   |       | X | O |   |       | X | O | X |
++---+---+---+       +---+---+---+       +---+---+---+   
+| O | X |   |       | X | O |   |       | O | X |   |
++---+---+---+       +---+---+---+       +---+---+---+
+| O |   | X |       |   | O | X |       | X | O |   |
++---+---+---+       +---+---+---+       +---+---+---+
+
 ## Live Demo
 
 Coming soon
-
-## Getting Started
 
 ### Prerequisites
 
