@@ -42,12 +42,13 @@ def won_draw(board, player)
   # check if player has won ==> If yes break declaring winner
   if board.won(player.symbol)
     puts "Congratulations ! #{player.name} (#{player.symbol}) has won the game !!"
-    'won'
+    return true
     # check if full(board) ==> If yes break declaring tie
   elsif board.full
     puts 'Break Tie'
-    'full'
+    return true
   end
+  false
 end
 
 class Player
@@ -89,14 +90,13 @@ board = Board.new
 display_board(board.board)
 
 while board.full == false
-  # query players for moves
   player1_move = get_playermove(player1.name, board)
-  board.update_board('X', player1_move.to_i - 1)
+  board.update_board(player1.symbol, player1_move.to_i - 1)
   display_board(board.board)
-  break if won_draw(board, player1) == 'won' or won_draw(board, player1) == 'draw'
+  break if won_draw(board, player1)
 
   player2_move = get_playermove(player2.name, board)
-  board.update_board('O', player2_move.to_i - 1)
+  board.update_board(player2.symbol, player2_move.to_i - 1)
   display_board(board.board)
-  break if won_draw(board, player2) == 'won' or won_draw(board, player2) == 'draw'
+  break if won_draw(board, player2)
 end
