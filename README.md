@@ -9,8 +9,6 @@ This project involves implementation of the tic tac toe game : board of 9 cells 
 
 - Ruby
 
-
-
 ## Getting Started - How To Play
 
 The game will ask for player names, and assign symbols 'X' & 'O' to both players
@@ -50,7 +48,8 @@ Coming soon
 To get a running copy, follow the steps below.
 
 - Clone the project
-- Run `ruby .rb`
+- Install gem `colorize` : `sudo gem install colorize`
+- Run `ruby main.rb` in the folder `bin`
 
 ## Author
 
