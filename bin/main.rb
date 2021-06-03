@@ -48,7 +48,7 @@ def won_draw(board, player)
     puts 'Break Tie'
     return true
   end
-  return false
+  false
 end
 
 class Player
