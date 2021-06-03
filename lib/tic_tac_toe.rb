@@ -35,7 +35,7 @@ class Board
 
   def position_taken(position)
     @board[position] != ' '
-  end
+
 
   def update_board(symbol, position)
     @board = @board.map.with_index { |x, i| i == position ? symbol : x }
