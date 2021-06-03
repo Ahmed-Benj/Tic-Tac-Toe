@@ -53,12 +53,8 @@ Coming soon
 To get a running copy, follow the steps below.
 
 - Clone the project
-<<<<<<< HEAD
 - Install gem `colorize` : `sudo gem install colorize`
 - Run `ruby main.rb` in the folder `bin`
-=======
-- Run `ruby main.rb`
->>>>>>> 95ebea1535a164cc62cfa614fc1d2268c61ebace
 
 ## Author
 
