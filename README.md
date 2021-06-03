@@ -15,19 +15,23 @@ The game will ask for player names, and assign symbols 'X' & 'O' to both players
 
 The game will show the empty board 
 
-+---+---+---+
-|   |   |   |
-+---+---+---+
-|   |   |   |
-+---+---+---+
-|   |   |   |
-+---+---+---+
+<pre>
+  +---+---+---+ 
+  |   |   |   | 
+  +---+---+---+ 
+  |   |   |   | 
+  +---+---+---+ 
+  |   |   |   | 
+  +---+---+---+  
+</pre>
 
 In order to win the game, you will have to make a series of 3 symbols ('X' or 'O') in a row in any direction :
 
 Examples of winning boards :
 
+ <pre>
   X WINNING           O WINNING           X WINNING  
+
 +---+---+---+       +---+---+---+       +---+---+---+
 | X | O |   |       | X | O |   |       | O | O | X |
 +---+---+---+       +---+---+---+       +---+---+---+   
@@ -35,6 +39,7 @@ Examples of winning boards :
 +---+---+---+       +---+---+---+       +---+---+---+
 | O |   | X |       |   | O | X |       | O | O |   |
 +---+---+---+       +---+---+---+       +---+---+---+
+</pre>
 
 ## Live Demo
 
@@ -48,8 +53,12 @@ Coming soon
 To get a running copy, follow the steps below.
 
 - Clone the project
+<<<<<<< HEAD
 - Install gem `colorize` : `sudo gem install colorize`
 - Run `ruby main.rb` in the folder `bin`
+=======
+- Run `ruby main.rb`
+>>>>>>> 95ebea1535a164cc62cfa614fc1d2268c61ebace
 
 ## Author
 
