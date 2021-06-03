@@ -30,11 +30,11 @@ class Board
   end
 
   def full
-    @board.all? { |e| e.strip != '' }
+    @board.all? { |e| e.strip != ' ' }
   end
 
   def position_taken(position)
-    @board[position].strip != ''
+    @board[position].strip != ' '
   end
 
   def update_board(symbol, position)

@@ -2,7 +2,7 @@
 ##rubocop:disable all
 
 require_relative '../lib/tic_tac_toe'
-require 'colorize'
+#require 'colorize'
 
 def welcome_player(name, symbol)
   puts "\n#{name} will play with #{symbol}\n\n"
