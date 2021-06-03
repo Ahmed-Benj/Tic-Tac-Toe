@@ -43,7 +43,7 @@ Examples of winning boards :
 
 ## Live Demo
 
-Coming soon
+- [Live Demo](https://replit.com/@ahmedben4/Tic-Tac-Toe#bin/main.rb)
 
 ### Prerequisites
 
