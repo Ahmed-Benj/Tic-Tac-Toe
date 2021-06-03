@@ -30,12 +30,12 @@ class Board
   end
 
   def full
-    @board.all? { |e| e.strip != '' }
+    @board.all? { |e| e != ' ' }
   end
 
   def position_taken(position)
-    @board[position].strip != ''
-  end
+    @board[position] != ' '
+
 
   def update_board(symbol, position)
     @board = @board.map.with_index { |x, i| i == position ? symbol : x }

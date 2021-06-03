@@ -2,7 +2,7 @@
 ##rubocop:disable all
 
 require_relative '../lib/tic_tac_toe'
-require 'colorize'
+#require 'colorize'
 
 def welcome_player(name, symbol)
   puts "\n#{name} will play with #{symbol}\n\n"
@@ -32,7 +32,7 @@ end
 def get_playermove(playername, board)
   playermove = querydata("It's #{playername}'s turn!\n\nPlease select an available cell from the board (1-9)")
   while board.position_taken(playermove.to_i - 1) or !(1..9).to_a.include? playermove.to_i or playermove == ''
-    puts 'this position is taken/not in range, please choose another one'
+    puts 'this position is taken/not in range, please choose another one'.colorize(:red)
     playermove = querydata('')
   end
   playermove
@@ -45,7 +45,7 @@ def won_draw(board, player)
     return true
     # check if full(board) ==> If yes break declaring tie
   elsif board.full
-    puts 'Break Tie'
+    puts 'Break Tie'.colorize(:red)
     return true
   end
   false
@@ -75,7 +75,7 @@ class Player
       puts "Name can't be empty or containing numbers.#{@display_tries} time(s) left".colorize(:red)
       @display_tries -= 1
     end
-    exit_game("exceeded #{max_tries} tries")
+    exit_game("exceeded #{max_tries} tries").colorize(:red)
   end
 end
 
