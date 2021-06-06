@@ -2,7 +2,7 @@
 ##rubocop:disable all
 
 require_relative '../lib/tic_tac_toe'
-#require 'colorize'
+require 'colorize'
 
 def welcome_player(name, symbol)
   puts "\n#{name} will play with #{symbol}\n\n"
@@ -41,7 +41,7 @@ end
 def won_draw(board, player)
   # check if player has won ==> If yes break declaring winner
   if board.won(player.symbol)
-    puts "Congratulations ! #{player.name} (#{player.symbol}) has won the game !!"
+    puts "Congratulations ! #{player.name} (#{player.symbol}) has won the game !!".colorize(:green)
     return true
     # check if full(board) ==> If yes break declaring tie
   elsif board.full
