@@ -5,7 +5,6 @@ class Board
 
   def initialize
     @board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
-    @display_board = %w[1 2 3 4 5 6 7 8 9]
   end
 
   WIN_COMBINATIONS = [
@@ -35,7 +34,7 @@ class Board
 
   def position_taken(position)
     @board[position] != ' '
-
+  end
 
   def update_board(symbol, position)
     @board = @board.map.with_index { |x, i| i == position ? symbol : x }
