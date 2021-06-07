@@ -5,17 +5,17 @@ require_relative '../lib/tic_tac_toe'
 require 'colorize'
 
 def welcome_player(name, symbol)
-  return "\n#{name} will play with #{symbol}\n\n"
+  "\n#{name} will play with #{symbol}\n\n"
 end
 
 def display_board(board)
   dis_board = separator = '+---+---+---+'
   i = 0
   3.times do
-    dis_board = dis_board + "\n| #{board[i]} | #{board[i+1]} | #{board[i+2]} |\n" + separator
-    i = i + 3
+    dis_board = dis_board + "\n| #{board[i]} | #{board[i + 1]} | #{board[i + 2]} |\n" + separator
+    i += 3
   end
-  return dis_board +"\n\n"
+  dis_board + "\n\n"
 end
 
 def exit_game(reason)
