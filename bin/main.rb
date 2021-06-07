@@ -5,18 +5,17 @@ require_relative '../lib/tic_tac_toe'
 require 'colorize'
 
 def welcome_player(name, symbol)
-  puts "\n#{name} will play with #{symbol}\n\n"
+  return "\n#{name} will play with #{symbol}\n\n"
 end
 
 def display_board(board)
-  separator = '+---+---+---+'
-  puts separator
-  puts "| #{board[0]} | #{board[1]} | #{board[2]} |"
-  puts separator
-  puts "| #{board[3]} | #{board[4]} | #{board[5]} |"
-  puts separator
-  puts "| #{board[6]} | #{board[7]} | #{board[8]} |"
-  puts "#{separator}\n\n"
+  dis_board = separator = '+---+---+---+'
+  i = 0
+  3.times do
+    dis_board = dis_board + "\n| #{board[i]} | #{board[i+1]} | #{board[i+2]} |\n" + separator
+    i = i + 3
+  end
+  return dis_board +"\n\n"
 end
 
 def exit_game(reason)
@@ -81,22 +80,22 @@ end
 
 puts "Welcome to rubys Tic-Tac-Toe !\n\n"
 player1 = Player.new('Player 1', 'X')
-welcome_player(player1.name, player1.symbol)
+puts welcome_player(player1.name, player1.symbol)
 player2 = Player.new('Player 2', 'O')
-welcome_player(player2.name, player2.symbol)
+puts welcome_player(player2.name, player2.symbol)
 
 puts "Let's start!\n\n"
 board = Board.new
-display_board(board.board)
+puts display_board(board.board)
 
 while board.full == false
   player1_move = get_playermove(player1.name, board)
   board.update_board(player1.symbol, player1_move.to_i - 1)
-  display_board(board.board)
+  puts display_board(board.board)
   break if won_draw(board, player1)
 
   player2_move = get_playermove(player2.name, board)
   board.update_board(player2.symbol, player2_move.to_i - 1)
-  display_board(board.board)
+  puts display_board(board.board)
   break if won_draw(board, player2)
 end
