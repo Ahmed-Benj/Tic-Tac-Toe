@@ -14,7 +14,9 @@ describe Game do
   let(:board) { Board.new }
   describe '#display_board' do
     it 'displays board' do
-      expect(game.display_board(board.board)).to eq("+---+---+---+\n|   |   |   |\n+---+---+---+\n|   |   |   |\n+---+---+---+\n|   |   |   |\n+---+---+---+\n\n")
-    end
+      expect(game.display_board(board.board)).to eq("+---+---+---+\n|\
+   |   |   |\n+---+---+---+\n|   |   |   |\n+---+---+---+\n|   |\
+   |   |\n+---+---+---+\n\n")
+   end
   end
 end
