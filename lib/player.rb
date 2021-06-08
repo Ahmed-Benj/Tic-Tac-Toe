@@ -1,3 +1,5 @@
+require 'colorize'
+
 class Player
   attr_accessor :name, :symbol
 
