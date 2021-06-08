@@ -17,6 +17,6 @@ describe Game do
       expect(game.display_board(board.board)).to eq("+---+---+---+\n|\
    |   |   |\n+---+---+---+\n|   |   |   |\n+---+---+---+\n|   |\
    |   |\n+---+---+---+\n\n")
-   end
+    end
   end
 end
