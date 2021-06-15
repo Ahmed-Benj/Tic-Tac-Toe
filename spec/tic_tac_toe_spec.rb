@@ -52,7 +52,7 @@ describe Board do
       expect(board.won('X')).to eq(true)
     end
     it 'checks winner O' do
-      board.board = [' ',' ','X','O','O','O',' ',' ','X']
+      board.board = [' ', ' ', 'X', 'O', 'O', 'O', ' ', ' ', 'X']
       expect(board.won('O')).to eq(true)
     end
   end
@@ -63,9 +63,8 @@ describe Board do
       expect(board.full).to eq(false)
     end
     it 'checks if board is full' do
-      board.board = ['O', 'X', 'O', 'X', 'X', 'O', 'O', 'X', 'X']
+      board.board = %w[O X O X X O O X X]
       expect(board.full).to eq(true)
     end
   end
-
 end
