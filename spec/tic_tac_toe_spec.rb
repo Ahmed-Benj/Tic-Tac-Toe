@@ -67,4 +67,15 @@ describe Board do
       expect(board.full).to eq(true)
     end
   end
+
+  describe '#position_taken' do
+    it 'checks if position 0 is taken' do
+      board.board = ['X', ' ', ' ', ' ', ' ', ' ', 'O', ' ', ' ']
+      expect(board.position_taken(0)).to eq(true)
+    end
+    it 'checks if position 4 is taken' do
+      board.board = [' ', ' ', ' ', '', ' ', ' ', 'X', ' ', ' ']
+      expect(board.position_taken(4)).to eq(false)
+    end
+  end
 end
