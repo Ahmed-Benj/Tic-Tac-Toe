@@ -21,12 +21,6 @@ describe Game do
     end
   end
 
-  # DRAW_board board = ['X','O','O','O','X','X','X','X','O']
-  # WIN_board_X board = ['X','O',' ',' ','X','O',' ',' ','X']
-  # WIN_board_X board = ['O','O','X',' ','X','O','X',' ',' ']
-  # WIN_board_O board = [' ',' ','X','O','O','O',' ',' ','X']
-  # NoWIN_NoDRAW_board_X board = [' ',' ',' ','X',' ',' ',' ',' ',' ']
-
   describe '#won_draw' do
     it 'defines draw' do
       board.board = %w[X O O O X X X X O]
