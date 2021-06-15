@@ -45,6 +45,7 @@ end
 
 describe Board do
   let(:board) { Board.new }
+  let(:board1) { Board.new }
 
   describe '#won' do
     it 'checks winner X' do
@@ -76,6 +77,19 @@ describe Board do
     it 'checks if position 4 is taken' do
       board.board = [' ', ' ', ' ', '', ' ', ' ', 'X', ' ', ' ']
       expect(board.position_taken(4)).to eq(false)
+    end
+  end
+
+  describe '#update_board' do
+    it 'checks if it updates board correctly' do
+      board.board = ['X', ' ', ' ', ' ', ' ', ' ', 'O', ' ', ' ']
+      board1.board = ['X', ' ', ' ', ' ', 'X', ' ', 'O', ' ', ' ']
+      expect(board.update_board('X', 4)).to eq(board1.board)
+    end
+    it 'checks if it updates board correctly' do
+      board.board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+      board1.board = [' ', ' ', ' ', ' ', ' ', ' ', 'O', ' ', ' ']
+      expect(board.update_board('O', 6)).to eq(board1.board)
     end
   end
 end
