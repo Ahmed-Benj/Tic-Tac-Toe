@@ -69,8 +69,8 @@ describe Board do
       expect(board.position_taken(0)).to eq(true)
     end
     it 'checks if position 4 is taken' do
-      board.board = [' ', ' ', ' ', '', ' ', ' ', 'X', ' ', ' ']
-      expect(board.position_taken(4)).to eq(false)
+      board.board = [' ', ' ', ' ', ' ', ' ', ' ', 'X', ' ', ' ']
+      expect(board.position_taken(4)).not_to eq(true)
     end
   end
 
@@ -83,7 +83,7 @@ describe Board do
     it 'checks if it updates board correctly' do
       board.board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
       board1.board = [' ', ' ', ' ', ' ', ' ', ' ', 'O', ' ', ' ']
-      expect(board.update_board('O', 6)).to eq(board1.board)
+      expect(board.update_board('O', 5)).not_to eq(board1.board)
     end
   end
 end
