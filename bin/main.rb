@@ -8,8 +8,10 @@ game = Game.new
 
 puts "Welcome to rubys Tic-Tac-Toe !\n\n"
 player1 = Player.new('Player 1', 'X')
+player1.getname
 puts game.welcome_player(player1.name, player1.symbol)
 player2 = Player.new('Player 2', 'O')
+player2.getname
 puts game.welcome_player(player2.name, player2.symbol)
 
 puts "Let's start!\n\n"

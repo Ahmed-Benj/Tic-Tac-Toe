@@ -8,7 +8,7 @@ class Player
   def initialize(player, symbol)
     @player = player
     @symbol = symbol
-    getname
+    # getname
   end
 
   def prompt

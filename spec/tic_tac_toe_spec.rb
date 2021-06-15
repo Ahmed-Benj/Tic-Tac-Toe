@@ -3,8 +3,9 @@ require_relative '../lib/player'
 require_relative '../lib/game'
 
 describe Game do
-
   let(:game) { Game.new }
+  let(:board) { Board.new }
+  let(:playerx) { Player.new('Player 1', 'X') }
 
   describe '#welcome_player' do
     it 'welcomes player' do
@@ -20,14 +21,34 @@ describe Game do
     end
   end
 
+  # DRAW_board board = ['X','O','O','O','X','X','X','X','O']
+  # WIN_board_X board = ['X','O',' ',' ','X','O',' ',' ','X']
+  # WIN_board_X board = ['O','O','X',' ','X','O','X',' ',' ']
+  # NoWIN_NoDRAW_board_X board = [' ',' ',' ','X',' ',' ',' ',' ',' ']
+
   describe '#won_draw' do
-    
-  let(:playerx) { Player.new('Player 1', 'X') }
-    #playerx.name = 'Player X'
-    let(:board) { Board.new }
-    board.board = ['X','O','X','X','O','O','O','X','X']
-        it 'defines winning or drawing' do
-      expect(game.won_draw(['X','O','X','X','O','O','O','X','X'],playerx)).to eq(false)
+    it 'defines draw' do
+      board.board = %w[X O O O X X X X O]
+      expect(game.won_draw(board, playerx)).to eq(true)
+    end
+    it 'defines win' do
+      board.board = ['X', 'O', ' ', ' ', 'X', 'O', ' ', ' ', 'X']
+      expect(game.won_draw(board, playerx)).to eq(true)
+    end
+    it 'defines neither win nor draw' do
+      board.board = [' ', ' ', ' ', 'X', ' ', ' ', ' ', ' ', ' ']
+      expect(game.won_draw(board, playerx)).to eq(false)
+    end
+  end
+end
+
+describe Board do
+  let(:board) { Board.new }
+
+  describe '#won' do
+    it 'checks winner' do
+      board.board = ['O', 'O', 'X', ' ', 'X', 'O', 'X', ' ', ' ']
+      expect(board.won('X')).to eq(false)
     end
   end
 end
