@@ -24,6 +24,7 @@ describe Game do
   # DRAW_board board = ['X','O','O','O','X','X','X','X','O']
   # WIN_board_X board = ['X','O',' ',' ','X','O',' ',' ','X']
   # WIN_board_X board = ['O','O','X',' ','X','O','X',' ',' ']
+  # WIN_board_O board = [' ',' ','X','O','O','O',' ',' ','X']
   # NoWIN_NoDRAW_board_X board = [' ',' ',' ','X',' ',' ',' ',' ',' ']
 
   describe '#won_draw' do
@@ -46,9 +47,25 @@ describe Board do
   let(:board) { Board.new }
 
   describe '#won' do
-    it 'checks winner' do
+    it 'checks winner X' do
       board.board = ['O', 'O', 'X', ' ', 'X', 'O', 'X', ' ', ' ']
-      expect(board.won('X')).to eq(false)
+      expect(board.won('X')).to eq(true)
+    end
+    it 'checks winner O' do
+      board.board = [' ',' ','X','O','O','O',' ',' ','X']
+      expect(board.won('O')).to eq(true)
     end
   end
+
+  describe '#full' do
+    it 'checks if board is full' do
+      board.board = [' ', 'X', 'O', 'X', 'X', 'O', 'O', 'X', 'X']
+      expect(board.full).to eq(false)
+    end
+    it 'checks if board is full' do
+      board.board = ['O', 'X', 'O', 'X', 'X', 'O', 'O', 'X', 'X']
+      expect(board.full).to eq(true)
+    end
+  end
+
 end
