@@ -41,6 +41,18 @@ Examples of winning boards :
 +---+---+---+       +---+---+---+       +---+---+---+
 </pre>
 
+Examples of draw boards :
+
+ <pre>
++---+---+---+       +---+---+---+      
+| X | O | X |       | X | O | O |       
++---+---+---+       +---+---+---+       
+| O | X | O |       | O | X | X |      
++---+---+---+       +---+---+---+       
+| O | X | X |       | O | O | X |     
++---+---+---+       +---+---+---+      
+</pre>
+
 ## Live Demo
 
 - [Live Demo](https://replit.com/@ahmedben4/Tic-Tac-Toe#bin/main.rb)
@@ -53,7 +65,6 @@ Examples of winning boards :
 To get a running copy, follow the steps below.
 
 - Clone the project
-- Install gem `colorize` : `sudo gem install colorize`
 - Run `ruby main.rb` in the folder `bin`
 
 ## Author

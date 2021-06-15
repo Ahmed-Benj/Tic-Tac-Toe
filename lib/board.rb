@@ -1,5 +1,3 @@
-##rubocop:disable all
-
 class Board
   attr_accessor :board
 
