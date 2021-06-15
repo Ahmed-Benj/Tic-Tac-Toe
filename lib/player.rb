@@ -1,7 +1,3 @@
-##rubocop:disable all
-
-require 'colorize'
-
 class Player
   attr_accessor :name, :symbol
 
@@ -23,9 +19,9 @@ class Player
       prompt
       return @name unless @name.empty? or @name.match?(/^[A-Za-z ]*$/) == false
 
-      puts "Name can't be empty or containing numbers.#{@display_tries} time(s) left".colorize(:red)
+      puts "Name can't be empty or containing numbers.#{@display_tries} time(s) left"
       @display_tries -= 1
     end
-    exit_game("exceeded #{max_tries} tries").colorize(:red)
+    exit_game("exceeded #{max_tries} tries")
   end
 end

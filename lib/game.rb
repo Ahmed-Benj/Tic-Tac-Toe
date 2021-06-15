@@ -1,7 +1,3 @@
-##rubocop:disable all
-
-require 'colorize'
-
 class Game
   def initialize; end
 
@@ -32,7 +28,7 @@ class Game
   def get_playermove(playername, board)
     playermove = querydata("It's #{playername}'s turn!\n\nPlease select an available cell from the board (1-9)")
     while board.position_taken(playermove.to_i - 1) or !(1..9).to_a.include? playermove.to_i or playermove == ''
-      puts 'this position is taken/not in range, please choose another one'.colorize(:red)
+      puts 'this position is taken/not in range, please choose another one'
       playermove = querydata('')
     end
     playermove
@@ -41,11 +37,11 @@ class Game
   def won_draw(board, player)
     # check if player has won ==> If yes break declaring winner
     if board.won(player.symbol)
-      puts "Congratulations ! #{player.name} (#{player.symbol}) has won the game !!".colorize(:green)
+      puts "Congratulations ! #{player.name} (#{player.symbol}) has won the game !!"
       return true
       # check if full(board) ==> If yes break declaring tie
     elsif board.full
-      puts 'Break Tie'.colorize(:red)
+      puts 'Break Tie'
       return true
     end
     false

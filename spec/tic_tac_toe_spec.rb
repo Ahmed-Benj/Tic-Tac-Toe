@@ -1,7 +1,6 @@
 require_relative '../lib/tic_tac_toe'
 require_relative '../lib/player'
 require_relative '../lib/game'
-require 'colorize'
 
 describe Game do
   let(:game) { Game.new }
